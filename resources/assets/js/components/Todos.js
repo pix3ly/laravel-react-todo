@@ -27,9 +27,35 @@ export default class Todos extends React.Component {
             })
     }
 
+    toggle(todo) {
+        let todosCopy = this.state.todos
+
+        for (const key in todosCopy) {
+            const todoCopy = todosCopy[key]
+
+            if (todoCopy === todo) {
+                todoCopy.completed = !todoCopy.completed
+
+                axios.put('/api/todos/' + todoCopy.id, {
+                    completed: todoCopy.completed
+                })
+            }
+        }
+
+        this.setState({
+            todos: todosCopy
+        })
+    }
+
     render() {
         const todos = this.state.todos.map(todo => {
-            return <Todo description={todo.description} completed={todo.completed} />
+            return (
+                <Todo
+                    description={todo.description}
+                    completed={todo.completed}
+                    onToggle={this.toggle.bind(this, todo)}
+                />
+            )
         })
 
         return (
