@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <h1>Hello</h1>
+        <div id="app"></div>
         <script src="/app.js"></script>
     </body>
 </html>
