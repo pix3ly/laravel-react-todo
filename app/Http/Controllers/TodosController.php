@@ -14,4 +14,11 @@ class TodosController extends Controller {
     public function show($id) {
         return Todo::find($id);
     }
+
+    public function store(Request $request) {
+        return Todo::create([
+            'description' => $request->input('description'),
+            'completed' => $request->input('completed')
+        ]);
+    }
 }
