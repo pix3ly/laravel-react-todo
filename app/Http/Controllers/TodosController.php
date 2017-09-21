@@ -21,4 +21,20 @@ class TodosController extends Controller {
             'completed' => $request->input('completed')
         ]);
     }
+
+    public function update(Request $request, $id) {
+        $todo = Todo::find($id);
+
+        if ($request->input('description')) {
+            $todo->description = $request->input('description');
+        }
+
+        if ($request->input('completed')) {
+            $todo->completed = $request->input('completed');
+        }
+
+        $todo->save();
+
+        return $todo;
+    }
 }
