@@ -17,7 +17,7 @@ export default class App extends React.Component {
     }
 
     fetchTodos() {
-        axios.get('/todos')
+        axios.get('/api/todos')
             .then(response => {
                 const json = response.data
 
