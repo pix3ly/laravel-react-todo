@@ -9,7 +9,7 @@ class CreateTodosTable extends Migration {
         Schema::create('todos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('description');
-            $table->boolean('completed');
+            $table->boolean('completed')->default(0);
         });
     }
 

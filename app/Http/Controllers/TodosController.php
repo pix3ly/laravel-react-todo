@@ -16,10 +16,13 @@ class TodosController extends Controller {
     }
 
     public function store(Request $request) {
-        return Todo::create([
-            'description' => $request->input('description'),
-            'completed' => $request->input('completed')
-        ]);
+        $todo = new Todo;
+
+        $todo->fill($request->all());
+
+        $todo->save();
+
+        return $todo;
     }
 
     public function update(Request $request, $id) {
