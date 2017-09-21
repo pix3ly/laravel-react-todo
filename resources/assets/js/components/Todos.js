@@ -51,6 +51,7 @@ export default class Todos extends React.Component {
         const todos = this.state.todos.map(todo => {
             return (
                 <Todo
+                    key={todo.id}
                     description={todo.description}
                     completed={todo.completed}
                     onToggle={this.toggle.bind(this, todo)}
