@@ -5,7 +5,7 @@ export default class Todo extends React.Component {
         return (
             <li>
                 <p>{this.props.description}</p>
-                <p>{this.props.completed}</p>
+                <input type="checkbox" checked={this.props.completed} />
             </li>
         )
     }
