@@ -34,6 +34,7 @@ export default class App extends React.Component {
         return (
             <div>
                 <input
+                    value={this.state.todo}
                     onChange={this.handleChange.bind(this)}
                     onKeyDown={this.handleKeyDown.bind(this)}
                 />
