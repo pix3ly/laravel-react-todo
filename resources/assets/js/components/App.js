@@ -38,6 +38,8 @@ export default class App extends React.Component {
         if (e.keyCode === 13) {
             axios.post('/api/todos', {
                 description: this.state.todo
+            }).then(response => {
+                this.fetchTodos()
             })
 
             this.setState({
