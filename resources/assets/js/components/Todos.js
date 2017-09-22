@@ -18,10 +18,6 @@ export default class Todos extends React.Component {
                 })
             }
         }
-
-        this.setState({
-            todos: todosCopy
-        })
     }
 
     render() {
