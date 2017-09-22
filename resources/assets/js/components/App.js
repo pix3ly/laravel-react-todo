@@ -8,8 +8,24 @@ export default class App extends React.Component {
         super(props)
 
         this.state = {
+            todos: [],
             todo: ''
         }
+    }
+
+    componentDidMount() {
+        this.fetchTodos()
+    }
+
+    fetchTodos() {
+        axios.get('/api/todos')
+            .then(response => {
+                const json = response.data
+
+                this.setState({
+                    todos: json
+                })
+            })
     }
 
     handleChange(e) {
@@ -38,7 +54,7 @@ export default class App extends React.Component {
                     onChange={this.handleChange.bind(this)}
                     onKeyDown={this.handleKeyDown.bind(this)}
                 />
-                <Todos />
+                <Todos todos={this.state.todos} />
             </div>
         )
     }
