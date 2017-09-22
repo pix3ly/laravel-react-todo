@@ -5,7 +5,7 @@ import Todo from './Todo'
 
 export default class Todos extends React.Component {
     toggle(todo) {
-        let todosCopy = this.state.todos
+        let todosCopy = this.props.todos
 
         for (const key in todosCopy) {
             const todoCopy = todosCopy[key]
