@@ -34,7 +34,9 @@ export default class Todos extends React.Component {
 
         return (
             <table>
-                {todos}
+                <tbody>
+                    {todos}
+                </tbody>
             </table>
         )
     }
