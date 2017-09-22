@@ -34,4 +34,16 @@ class TodosController extends Controller {
 
         return $todo;
     }
+
+    public function destroy($id) {
+        $todo = Todo::find($id);
+
+        if ($todo) {
+            $todo->delete();
+
+            return response()->json(null, 200);
+        }
+
+        return response()->json(null, 404);
+    }
 }
