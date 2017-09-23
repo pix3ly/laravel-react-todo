@@ -11,7 +11,10 @@ export default class Todo extends React.Component {
                         onChange={this.props.onChange}
                     />
                 </div>
-                <div className="column">{this.props.description}</div>
+                <div className="column big">{this.props.description}</div>
+                <div className="column">
+                    <button onClick={this.props.delete}>Delete</button>
+                </div>
             </li>
         )
     }

@@ -18,6 +18,9 @@ const todos = (state = [], payload) => {
                 return todo
             })
 
+        case 'REMOVE_TODO':
+            return state.filter(todo => todo.id !== payload.id)
+
         default:
             return state
     }

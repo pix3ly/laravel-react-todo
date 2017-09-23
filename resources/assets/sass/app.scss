@@ -43,6 +43,8 @@ body {
 
             .column {
                 padding: 32px 16px;
+                display: flex;
+                align-items: center;
 
                 &:first-child {
                     padding-left: 32px;
@@ -51,13 +53,30 @@ body {
                 &:last-child {
                     padding-right: 32px;
                 }
+
+                &.big {
+                    flex: 1;
+                }
             }
         }
     }
 }
 
-input:focus {
-    outline: 0;
+input, button {
+    &:focus {
+        outline: 0;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+button {
+    font: inherit;
+    background: none;
+    border: none;
+    color: #FA6466;
 }
 
 input[type=checkbox] {
