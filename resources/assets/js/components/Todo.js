@@ -8,7 +8,7 @@ export default class Todo extends React.Component {
                     <input
                         type="checkbox"
                         checked={this.props.completed}
-                        onChange={this.props.onToggle}
+                        onChange={this.props.onChange}
                     />
                 </td>
                 <td>{this.props.description}</td>

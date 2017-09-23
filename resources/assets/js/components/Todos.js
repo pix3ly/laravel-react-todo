@@ -1,23 +1,35 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import axios from 'axios'
+
+import { addTodo, toggleTodo } from '../actions'
 
 import Todo from './Todo'
 
-export default class Todos extends React.Component {
-    toggle(todo) {
-        let todosCopy = this.props.todos
+class Todos extends React.Component {
+    componentDidMount() {
+        this.fetchTodos()
+    }
 
-        for (const key in todosCopy) {
-            const todoCopy = todosCopy[key]
+    fetchTodos() {
+        axios.get('/api/todos')
+            .then(response => {
+                const json = response.data
 
-            if (todoCopy === todo) {
-                todoCopy.completed = !todoCopy.completed
+                for (const key in json) {
+                    const todo = json[key]
 
-                axios.put('/api/todos/' + todoCopy.id, {
-                    completed: todoCopy.completed
-                })
-            }
-        }
+                    this.props.addTodo(todo.id, todo.description, todo.completed)
+                }
+            })
+    }
+
+    toggleTodo(todo) {
+        axios.put('/api/todos/' + todo.id, {
+            completed: !todo.completed
+        }).then(response => {
+            this.props.toggleTodo(todo.id)
+        })
     }
 
     render() {
@@ -27,7 +39,7 @@ export default class Todos extends React.Component {
                     key={todo.id}
                     description={todo.description}
                     completed={todo.completed}
-                    onToggle={this.toggle.bind(this, todo)}
+                    onChange={this.toggleTodo.bind(this, todo)}
                 />
             )
         })
@@ -41,3 +53,22 @@ export default class Todos extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        todos: state.todos
+    }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        addTodo: (id, description, completed) => {
+            dispatch(addTodo(id, description, completed))
+        },
+        toggleTodo: id => {
+            dispatch(toggleTodo(id))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Todos)

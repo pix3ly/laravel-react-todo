@@ -1,49 +1,38 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import axios from 'axios'
+
+import { addTodo } from '../actions'
 
 import Todos from './Todos'
 
-export default class App extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            todos: [],
-            todo: ''
+            input: ''
         }
     }
 
-    componentDidMount() {
-        this.fetchTodos()
-    }
-
-    fetchTodos() {
-        axios.get('/api/todos')
-            .then(response => {
-                const json = response.data
-
-                this.setState({
-                    todos: json
-                })
-            })
-    }
-
-    handleChange(e) {
+    onChange(e) {
         this.setState({
-            todo: e.target.value
+            input: e.target.value
         })
     }
 
-    handleKeyDown(e) {
+    onKeyDown(e) {
         if (e.keyCode === 13) {
             axios.post('/api/todos', {
-                description: this.state.todo
+                description: this.state.input
             }).then(response => {
-                this.fetchTodos()
-            })
+                const json = response.data
 
-            this.setState({
-                todo: ''
+                this.props.addTodo(json.id, this.state.input)
+
+                this.setState({
+                    input: ''
+                })
             })
         }
     }
@@ -52,12 +41,22 @@ export default class App extends React.Component {
         return (
             <div>
                 <input
-                    value={this.state.todo}
-                    onChange={this.handleChange.bind(this)}
-                    onKeyDown={this.handleKeyDown.bind(this)}
+                    value={this.state.input}
+                    onChange={this.onChange.bind(this)}
+                    onKeyDown={this.onKeyDown.bind(this)}
                 />
-                <Todos todos={this.state.todos} />
+                <Todos />
             </div>
         )
     }
 }
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        addTodo: (id, description, completed) => {
+            dispatch(addTodo(id, description, completed))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(App)
