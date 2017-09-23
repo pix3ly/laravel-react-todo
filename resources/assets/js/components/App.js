@@ -44,6 +44,8 @@ class App extends React.Component {
                     value={this.state.input}
                     onChange={this.onChange.bind(this)}
                     onKeyDown={this.onKeyDown.bind(this)}
+                    placeholder="Groceries, sports, etc"
+                    className="new"
                 />
                 <Todos />
             </div>

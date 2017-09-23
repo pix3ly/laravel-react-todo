@@ -45,11 +45,9 @@ class Todos extends React.Component {
         })
 
         return (
-            <table>
-                <tbody>
-                    {todos}
-                </tbody>
-            </table>
+            <ul>
+                {todos}
+            </ul>
         )
     }
 }

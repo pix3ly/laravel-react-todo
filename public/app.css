@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: Roboto Mono;
+}
+
+#app {
+  margin: 48px auto;
+  padding: 24px;
+  width: 90%;
+  max-width: 480px;
+  -webkit-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+#app ul {
+  list-style: none;
+}
+
+#app li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#app input {
+  border: none;
+  font: inherit;
+  width: 100%;
+}
+
+#app input:focus {
+  outline: 0;
+}
+
+#app input:first-child {
+  margin-bottom: 24px;
+}
+
